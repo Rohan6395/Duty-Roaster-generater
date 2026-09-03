@@ -35,7 +35,7 @@ class RosterExtractor:
         logger.info("Extracting roster from %d image(s) using Gemini Vision", len(image_paths))
 
         # Use free-tier flash model for faster processing
-        model = genai.GenerativeModel("gemini-2.0-flash")
+        model = genai.GenerativeModel(self.settings.gemini_model)
 
         # Prepare images
         image_data = []
