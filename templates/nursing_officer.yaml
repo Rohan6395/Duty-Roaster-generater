@@ -1,0 +1,34 @@
+template_id: nursing_officer
+display_name: Nursing Officer
+match_keywords:
+  - NURSING OFFICER
+  - DUTY ROSTER
+page:
+  size: A4
+  orientation: portrait
+
+table:
+  row_start_y: 170
+  row_height: 22
+  max_staff_rows: 20
+  columns:
+    serial: {x0: 28, x1: 58}
+    name: {x0: 58, x1: 198}
+    post: {x0: 198, x1: 250}
+    first_day_x: 250
+    day_col_width: 12
+
+headers:
+  month_box: {x0: 350, y0: 90, x1: 500, y1: 120}
+  date_header_y: 145
+  weekday_header_y: 160
+
+regions:
+  preserve:
+    - {name: important_notes, x0: 25, y0: 610, x1: 570, y1: 760}
+    - {name: signature_area, x0: 360, y0: 640, x1: 570, y1: 820}
+  editable:
+    - month
+    - weekdays
+    - dates
+    - staff_table

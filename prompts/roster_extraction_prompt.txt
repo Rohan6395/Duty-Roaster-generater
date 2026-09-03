@@ -1,0 +1,46 @@
+You are extracting handwritten hospital duty roster data from one or more images.
+
+Rules:
+1. Image is authoritative source for variable data.
+2. Inspect row by row and date by date.
+3. Identify month and year from handwriting.
+4. Identify staff names, POST values, and every daily duty.
+5. Preserve blanks exactly.
+6. Never infer missing values from any reference PDF.
+7. Distinguish M, E, N, D/O, N/O carefully.
+8. Normalize spacing variants like D / O -> D/O and N / O -> N/O.
+9. If unreadable, add an uncertain cell entry instead of guessing.
+10. Return valid JSON only.
+11. Common duty codes: M (Morning), E (Evening), N (Night), D/O (Day Off), N/O (Night Off), L (Leave)
+
+Return ONLY valid JSON (no markdown, no explanation) with this structure:
+{
+  "hospital_name": "string or empty",
+  "roster_title": "string or empty",
+  "month": 1-12,
+  "year": 2000-2100,
+  "total_days": 28-31,
+  "staff": [
+    {
+      "serial_number": 1,
+      "name": "STAFF NAME",
+      "post": "POST/DESIGNATION",
+      "duties": {
+        "1": "M",
+        "2": "E",
+        "3": "",
+        "4": "D/O",
+        ...
+      }
+    }
+  ],
+  "uncertain_cells": [
+    {
+      "staff_name": "NAME",
+      "day": 5,
+      "detected_value": "M?",
+      "reason": "handwriting unclear",
+      "confidence": 0.5
+    }
+  ]
+}
